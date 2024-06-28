@@ -1,4 +1,5 @@
 import { NextUIProvider } from "@nextui-org/react";
+import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";
 
 type ProvidersProps = {
@@ -6,5 +7,7 @@ type ProvidersProps = {
 };
 
 export function Providers({ children }: ProvidersProps) {
-  return <NextUIProvider>{children}</NextUIProvider>;
+  return <SessionProvider>
+    <NextUIProvider>{children}</NextUIProvider>;
+  </SessionProvider>
 }

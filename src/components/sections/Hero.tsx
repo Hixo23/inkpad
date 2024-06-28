@@ -1,6 +1,10 @@
+"use client"
+
 import { Button } from "@nextui-org/react";
+import { signIn, useSession } from "next-auth/react";
 
 export function Hero() {
+  const { status } = useSession();
   return (
     <section className="min-h-[50vh] w-screen flex gap-6 flex-col text-white items-center justify-center">
       <div className="flex flex-col gap-6">
@@ -9,7 +13,7 @@ export function Hero() {
           All your notes, synced on all your devices!
         </p>
       </div>
-      <Button color="primary">Sign up now!</Button>
+     {status === "unauthenticated" &&  <Button onClick={() => signIn('discord')} color="primary">Sign in now!</Button>}
     </section>
   );
 }
