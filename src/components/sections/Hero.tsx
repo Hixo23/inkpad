@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Button } from "@nextui-org/react";
 import { signIn, useSession } from "next-auth/react";
@@ -13,7 +13,11 @@ export function Hero() {
           All your notes, synced on all your devices!
         </p>
       </div>
-     {status === "unauthenticated" &&  <Button onClick={() => signIn('discord')} color="primary">Sign in now!</Button>}
+      {status === "unauthenticated" && (
+        <Button onClick={() => signIn("discord")} color="primary">
+          Sign in now!
+        </Button>
+      )}
     </section>
   );
 }
