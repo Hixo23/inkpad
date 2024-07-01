@@ -1,9 +1,12 @@
-import { Sidebar } from "@/components/Sidebar/Sidebar";
+import { redirect } from "next/navigation";
 
-export default async function NotesPage() {
-  return (
-    <main className="w-screen min-h-screen flex">
-      <Sidebar />
-    </main>
-  );
+type notePageProps = {
+  searchParams?:{ [key: string]: string | undefined };
+}
+
+export default function NotesPage({ searchParams}: notePageProps) {
+  if(!searchParams?.id) return redirect('/')
+  return <div className="w-screen min-h-screen text-white flex justify-center items-center py-4">
+
+  </div>;
 }

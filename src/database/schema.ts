@@ -11,8 +11,9 @@ import { AdapterAccount } from "next-auth/adapters";
 
 export const notes = pgTable("note", {
   id: text("id").primaryKey().default(crypto.randomUUID()),
-  userId: text("userId").references(() => users.id, { onDelete: "cascade" }),
+  userEmail: text("userEmail").references(() => users.email, { onDelete: "cascade" }),
   content: text("content"),
+  title: text("title"),
 });
 
 export const users = pgTable("user", {
