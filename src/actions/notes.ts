@@ -23,5 +23,8 @@ export const getNoteById = async (noteId: string) => {
 };
 
 export const editNote = async (noteId: string, content: string) => {
-  return await db.update(notes).set({ content: content }).where(eq(notes.id, noteId));
+  return await db
+    .update(notes)
+    .set({ content: content })
+    .where(eq(notes.id, noteId));
 };

@@ -1,22 +1,19 @@
 "use client";
 
-import { Styles, TableContent } from "@blocknote/core";
-import { useState } from "react";
 import "@blocknote/mantine/style.css";
 import { BlockNoteView } from "@blocknote/mantine";
-import { useCreateBlockNote } from "@blocknote/react";
-import { editNote } from "@/actions/notes";
-import { useDebouncedCallback } from 'use-debounce';
 import { useEditor } from "@/hooks/useEditor";
 
 type EditorProps = {
-    noteId: string;
-    initialContent?: string | null;
+  note: {
+    id: string;
+    content: string | null;
+    title: string | null;
   };
+};
 
-export function Editor({ noteId, initialContent }: EditorProps) {
-  
-  const { debounced, editor } = useEditor(noteId, initialContent ?? null);
+export function Editor({ note }: EditorProps) {
+  const { debounced, editor } = useEditor(note.id, note.content ?? null);
 
   return (
     <BlockNoteView
