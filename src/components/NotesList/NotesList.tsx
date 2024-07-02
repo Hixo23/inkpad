@@ -22,8 +22,6 @@ export async function NotesList() {
 
   const userNotes = await getUserNotes(session.user.email!);
 
-  console.log(userNotes)
-
   return (
     <nav className="flex flex-col gap-4 overflow-y-scroll">
       {userNotes.map((note) => (

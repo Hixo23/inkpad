@@ -14,12 +14,11 @@ type SidebarProps = {
   children: React.ReactNode;
 };
 
-
 export function Sidebar({ children }: SidebarProps) {
   const [open, setOpen] = useState(false);
   const { data, status } = useSession();
 
-  if(!data?.user && status === "loading") return <Loading />
+  if (!data?.user && status === "loading") return <Loading />;
   return (
     <>
       <div
@@ -44,10 +43,12 @@ export function Sidebar({ children }: SidebarProps) {
         <div>
           <div className="font-semibold text-sm text-gray-500 flex justify-between items-center mb-4">
             <p className="">Notes</p>
-            <button onClick={async() => {
-              if(!data?.user?.email) return
-              await createNote(data.user.email);
-            }}>
+            <button
+              onClick={async () => {
+                if (!data?.user?.email) return;
+                await createNote(data.user.email);
+              }}
+            >
               <IoAdd size={24} />
             </button>
           </div>

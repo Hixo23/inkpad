@@ -14,9 +14,9 @@ export default async function NotesLayout({ children }: NotesLayoutProps) {
   if (!session?.user) return redirect("/");
   return (
     <main className="flex">
-     <Sidebar>
-      <NotesList/>
-     </Sidebar>
+      <Sidebar>
+        <NotesList />
+      </Sidebar>
       {children}
     </main>
   );

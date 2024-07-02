@@ -1,12 +1,12 @@
-import { redirect } from "next/navigation";
+import { getNoteById } from "@/actions/notes";
+import { Editor } from "@/components/Editor/Editor";
 
-type notePageProps = {
-  searchParams?:{ [key: string]: string | undefined };
-}
+export default async function NotesPage() {
 
-export default function NotesPage({ searchParams}: notePageProps) {
-  if(!searchParams?.id) return redirect('/')
-  return <div className="w-screen min-h-screen text-white flex justify-center items-center py-4">
 
-  </div>;
+  return (
+    <div className="w-screen min-h-screen text-white flex justify-center items-center py-4">
+      <p>Create new Note on sidebar!</p>
+    </div>
+  );
 }

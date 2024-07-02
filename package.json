@@ -11,19 +11,22 @@
   "type": "module",
   "dependencies": {
     "@auth/drizzle-adapter": "^1.4.1",
+    "@blocknote/core": "^0.14.2",
+    "@blocknote/mantine": "^0.14.2",
+    "@blocknote/react": "^0.14.2",
     "@nextui-org/react": "^2.4.2",
     "@types/pg": "^8.11.6",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.31.2",
     "framer-motion": "^11.2.12",
-    "lodash.debounce": "^4.0.8",
     "next": "14.2.4",
     "next-auth": "5.0.0-beta.19",
     "pg": "^8.12.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
+    "use-debounce": "^10.0.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
