@@ -9,7 +9,7 @@ export default async function NotePage({ params }: NotePageProps ) {
     const note = await getNoteById(params.id);
 
    return(
-    <div className="w-screen min-h-screen text-white flex justify-center items-center py-4">
+    <div className="w-screen text-white flex justify-center items-center py-4">
     <Editor noteId={note.id} initialContent={note.content} />
   </div>
    )

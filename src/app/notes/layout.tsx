@@ -13,7 +13,7 @@ export default async function NotesLayout({ children }: NotesLayoutProps) {
 
   if (!session?.user) return redirect("/");
   return (
-    <main className="flex">
+    <main className="flex overflow-hidden">
       <Sidebar>
         <NotesList />
       </Sidebar>
