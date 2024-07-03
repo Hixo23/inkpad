@@ -2,6 +2,7 @@
 
 import { getNoteById } from "@/actions/notes";
 import { Editor } from "@/components/Editor/Editor";
+import { NoteNavbar } from "@/components/ui/NoteNavbar/NoteNavbar";
 
 type NotePageProps = {
   params: { id: string };
@@ -10,11 +11,11 @@ type NotePageProps = {
 export default async function NotePage({ params }: NotePageProps) {
   const note = await getNoteById(params.id);
 
-  if(!note) return null;
-
+  if (!note) return null;
 
   return (
-    <div className="w-screen min-h-screen text-white flex justify-center items-center py-4">
+    <div className="w-full lg:ml-60 relative min-h-screen text-white flex flex-col items-center py-4">
+      <NoteNavbar title={note.title} />
       <Editor note={note} />
     </div>
   );

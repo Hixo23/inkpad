@@ -9,7 +9,7 @@ type EditorProps = {
     id: string;
     content: string | null;
     title: string | null;
-    userEmail: string | null
+    userEmail: string | null;
   };
 };
 
@@ -19,7 +19,7 @@ export function Editor({ note }: EditorProps) {
   return (
     <BlockNoteView
       onChange={() => debounced()}
-      className="w-1/2 py-12 px-4 z-0 overflow-y-scroll"
+      className="w-3/4 py-12 px-4 z-0 overflow-y-scroll"
       editor={editor}
     ></BlockNoteView>
   );
