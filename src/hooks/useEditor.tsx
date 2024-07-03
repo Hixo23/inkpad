@@ -66,7 +66,7 @@ export function useEditor(noteId: string, initialContent?: string | null) {
     }
     window.addEventListener('beforeunload', handleUnload);
     return () => window.removeEventListener('beforeunload', handleUnload)
-  }, [blocks, noteId])
+  }, [blocks, noteId, setBlocks])
 
   return { editor, debounced };
 }
