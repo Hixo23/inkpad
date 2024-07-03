@@ -10,13 +10,12 @@ type NotePageProps = {
 export default async function NotePage({ params }: NotePageProps) {
   const note = await getNoteById(params.id);
 
-  console.log(note)
+  if(!note) return null;
 
-  const data = JSON.parse(JSON.stringify(note).toString())
 
   return (
-    <div className="w-screen text-white flex justify-center items-center py-4">
-      <Editor note={data} />
+    <div className="w-screen min-h-screen text-white flex justify-center items-center py-4">
+      <Editor note={note} />
     </div>
   );
 }

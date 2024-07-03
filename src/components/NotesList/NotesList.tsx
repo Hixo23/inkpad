@@ -4,16 +4,7 @@ import { notes } from "@/database/schema";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { SingleNote } from "../SingleNote/SingleNote";
-
-async function getUserNotes(userEmail: string) {
-  "use server";
-  const userNotes = await db
-    .select()
-    .from(notes)
-    .where(eq(notes.userEmail, userEmail));
-
-  return userNotes;
-}
+import { getUserNotes } from "@/actions/notes";
 
 export async function NotesList() {
   const session = await auth();

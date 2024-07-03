@@ -9,6 +9,7 @@ type EditorProps = {
     id: string;
     content: string | null;
     title: string | null;
+    userEmail: string | null
   };
 };
 

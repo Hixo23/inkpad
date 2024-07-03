@@ -19,7 +19,20 @@ export const createNote = async (userEmail: string) => {
 
 export const getNoteById = async (noteId: string) => {
   const notesDb = await db.select().from(notes).where(eq(notes.id, noteId));
-  return notesDb[0];
+  const note = notesDb[0];
+
+  if (!note) {
+    return null;
+  }
+
+  const plainNote = {
+    id: note.id,
+    title: note.title,
+    content: note.content,
+    userEmail: note.userEmail,
+  };
+
+  return plainNote;
 };
 
 export const editNote = async (noteId: string, content: string) => {
@@ -27,4 +40,14 @@ export const editNote = async (noteId: string, content: string) => {
     .update(notes)
     .set({ content: content })
     .where(eq(notes.id, noteId));
+};
+
+export const getUserNotes = async (userEmail: string) => {
+  "use server";
+  const userNotes = await db
+    .select()
+    .from(notes)
+    .where(eq(notes.userEmail, userEmail));
+
+  return userNotes;
 };
