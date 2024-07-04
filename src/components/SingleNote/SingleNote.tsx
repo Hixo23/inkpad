@@ -13,7 +13,6 @@ export function SingleNote({ id, title }: SingleNoteProps) {
       key={id}
       className=" text-sm font-semibold text-gray-300 flex gap-2 w-full hover:bg-[#303030] rounded-lg py-1 px-2 cursor-pointer items-center"
     >
-      {" "}
       <IoDocumentTextOutline size={16} /> {title}
     </Link>
   );
