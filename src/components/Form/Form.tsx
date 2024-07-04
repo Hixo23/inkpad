@@ -7,6 +7,10 @@ interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
   action: (_: any, formData: FormData) => Promise<ActionResult>;
 }
 
+export interface ActionResult {
+  error: string | null;
+}
+
 export function Form({ children, action, ...props }: FormProps) {
   const [state, formAction] = useFormState(action, {
     error: null,
@@ -19,6 +23,4 @@ export function Form({ children, action, ...props }: FormProps) {
   );
 }
 
-export interface ActionResult {
-  error: string | null;
-}
+
