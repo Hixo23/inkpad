@@ -12,7 +12,7 @@ import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 
 export function Navbar() {
-  const {status, data } = useSession();
+  const { status, data } = useSession();
   return (
     <NextUINavbar className="bg-[#161616] border-b border-b-[#303030] flex fixed">
       <NavbarBrand>
@@ -27,11 +27,23 @@ export function Navbar() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-       {status === "authenticated" && data.user ? <User className="text-white" avatarProps={{ src: data.user.image! }} name={data.user.name}/> :  <NavbarItem>
-          <Button onClick={() => signIn('discord')} color="secondary" variant="flat">
-            Login using Discord
-          </Button>
-        </NavbarItem>}
+        {status === "authenticated" && data.user ? (
+          <User
+            className="text-white"
+            avatarProps={{ src: data.user.image! }}
+            name={data.user.name}
+          />
+        ) : (
+          <NavbarItem>
+            <Button
+              onClick={() => signIn("discord")}
+              color="secondary"
+              variant="flat"
+            >
+              Login using Discord
+            </Button>
+          </NavbarItem>
+        )}
       </NavbarContent>
     </NextUINavbar>
   );

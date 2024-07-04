@@ -7,7 +7,9 @@ type ProvidersProps = {
 };
 
 export function Providers({ children }: ProvidersProps) {
-  return <SessionProvider>
-    <NextUIProvider>{children}</NextUIProvider>;
-  </SessionProvider>
+  return (
+    <SessionProvider>
+      <NextUIProvider>{children}</NextUIProvider>;
+    </SessionProvider>
+  );
 }
