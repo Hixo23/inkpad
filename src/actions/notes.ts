@@ -43,7 +43,6 @@ export const editNote = async (noteId: string, content: string) => {
 };
 
 export const getUserNotes = async (userEmail: string) => {
-  "use server";
   const userNotes = await db
     .select()
     .from(notes)
