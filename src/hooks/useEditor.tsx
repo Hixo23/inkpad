@@ -1,4 +1,4 @@
-import { editNote } from "@/actions/notes";
+import { editNoteContent } from "@/actions/notes";
 import { Styles, TableContent } from "@blocknote/core";
 import { useCreateBlockNote } from "@blocknote/react";
 import { useDebouncedCallback } from "use-debounce";
@@ -61,7 +61,7 @@ export function useEditor(noteId: string, initialContent?: string | null) {
   useEffect(() => {
     const handleUnload = async (evt: BeforeUnloadEvent) => {
       evt.preventDefault();
-      await editNote(noteId, blocks);
+      await editNoteContent(noteId, blocks);
       return setBlocks("");
     };
     window.addEventListener("beforeunload", handleUnload);

@@ -35,7 +35,7 @@ export const getNoteById = async (noteId: string) => {
   return plainNote;
 };
 
-export const editNote = async (noteId: string, content: string) => {
+export const editNoteContent = async (noteId: string, content: string) => {
   return await db
     .update(notes)
     .set({ content: content })

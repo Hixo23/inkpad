@@ -19,7 +19,7 @@ export function Editor({ note }: EditorProps) {
   return (
     <BlockNoteView
       onChange={() => debounced()}
-      className="w-3/4 py-12 px-4 z-0 overflow-y-scroll"
+      className="w-3/4 py-12 px-4 mt-8 z-0 overflow-y-scroll"
       editor={editor}
     ></BlockNoteView>
   );
