@@ -9,9 +9,8 @@ import { getUserNotes } from "@/actions/notes";
 export async function NotesList() {
   const session = await auth();
 
-  if (!session?.user) return redirect("/");
 
-  const userNotes = await getUserNotes(session.user.email!);
+  const userNotes = await getUserNotes(session!.user!.email!);
 
   return (
     <nav className="flex flex-col gap-4 overflow-y-scroll">

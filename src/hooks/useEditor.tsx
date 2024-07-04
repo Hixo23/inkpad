@@ -62,7 +62,7 @@ export function useEditor(noteId: string, initialContent?: string | null) {
     const handleUnload = async (evt: BeforeUnloadEvent) => {
       evt.preventDefault();
       await editNote(noteId, blocks);
-      return setBlocks("");
+      setBlocks("");
     };
     window.addEventListener("beforeunload", handleUnload);
     return () => window.removeEventListener("beforeunload", handleUnload);
