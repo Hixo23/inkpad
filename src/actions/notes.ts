@@ -3,6 +3,7 @@
 import { db } from "@/database/db";
 import { notes } from "@/database/schema";
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export const createNote = async (userEmail: string) => {
@@ -36,14 +37,14 @@ export const getNoteById = async (noteId: string) => {
 };
 
 export const editNoteContent = async (noteId: string, content: string) => {
-  return await db
+  await db
     .update(notes)
     .set({ content: content })
     .where(eq(notes.id, noteId));
+    revalidatePath('/notes/[id]', 'page')
 };
 
 export const getUserNotes = async (userEmail: string) => {
-  "use server";
   const userNotes = await db
     .select()
     .from(notes)
@@ -51,3 +52,8 @@ export const getUserNotes = async (userEmail: string) => {
 
   return userNotes;
 };
+
+export const editNoteTitle = async(noteId: string, newTitle: string) => {
+   await db.update(notes).set({ title: newTitle }).where(eq(notes.id, noteId))
+   revalidatePath('/notes/[id]', 'page')
+}

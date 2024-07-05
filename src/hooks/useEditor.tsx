@@ -1,3 +1,5 @@
+"use client"
+
 import { editNoteContent } from "@/actions/notes";
 import { Styles, TableContent } from "@blocknote/core";
 import { useCreateBlockNote } from "@blocknote/react";

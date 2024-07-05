@@ -15,7 +15,7 @@ export default async function NotePage({ params }: NotePageProps) {
 
   return (
     <div className="w-full lg:ml-60 relative min-h-screen text-white flex flex-col items-center py-4">
-      <NoteNavbar title={note.title} />
+      <NoteNavbar noteId={note.id} title={note.title} />
       <Editor note={note} />
     </div>
   );

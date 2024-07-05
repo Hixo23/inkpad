@@ -6,15 +6,16 @@ import { useEditor } from "@/hooks/useEditor";
 
 type EditorProps = {
   note: {
-    id: string;
-    content: string | null;
-    title: string | null;
-    userEmail: string | null;
+    id?: string;
+    content?: string | null;
+    title?: string | null;
+    userEmail?: string | null;
   };
 };
 
 export function Editor({ note }: EditorProps) {
-  const { debounced, editor } = useEditor(note.id, note.content ?? null);
+  console.log(note)
+  const { debounced, editor } = useEditor(note.id ?? "", note.content ?? null);
 
   return (
     <BlockNoteView
