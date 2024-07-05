@@ -4,8 +4,6 @@ import { editNoteContent } from "@/actions/notes";
 import { Styles, TableContent } from "@blocknote/core";
 import { useCreateBlockNote } from "@blocknote/react";
 import { useDebouncedCallback } from "use-debounce";
-import { useLocalStorage } from "./useLocalStorage";
-import { useEffect } from "react";
 
 type Block = {
   id: string;
@@ -45,7 +43,6 @@ function isArrayOfBlocks(arr: any): arr is Block[] {
 }
 
 export function useEditor(noteId: string, initialContent?: string | null) {
-  const [blocks, setBlocks] = useLocalStorage<string>(`blocks-${noteId}`, "");
   const parsedContent =
     initialContent && isArrayOfBlocks(JSON.parse(initialContent))
       ? JSON.parse(initialContent)
@@ -57,18 +54,10 @@ export function useEditor(noteId: string, initialContent?: string | null) {
 
   const debounced = useDebouncedCallback(async () => {
     const currentBlocks = editor.document;
-    setBlocks(JSON.stringify(currentBlocks));
+    await editNoteContent(noteId, JSON.stringify(currentBlocks));
   }, 300);
 
-  useEffect(() => {
-    const handleUnload = async (evt: BeforeUnloadEvent) => {
-      evt.preventDefault();
-      await editNoteContent(noteId, blocks);
-      return setBlocks("");
-    };
-    window.addEventListener("beforeunload", handleUnload);
-    return () => window.removeEventListener("beforeunload", handleUnload);
-  }, [blocks, noteId, setBlocks]);
+
 
   return { editor, debounced };
 }

@@ -14,7 +14,6 @@ type EditorProps = {
 };
 
 export function Editor({ note }: EditorProps) {
-  console.log(note)
   const { debounced, editor } = useEditor(note.id ?? "", note.content ?? null);
 
   return (
