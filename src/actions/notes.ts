@@ -15,7 +15,7 @@ export const createNote = async (userEmail: string) => {
     userEmail: userEmail,
   });
 
-  return redirect(`/notes?id=${noteId}`);
+  return redirect(`/notes/${noteId}`);
 };
 
 export const getNoteById = async (noteId: string) => {
@@ -26,14 +26,9 @@ export const getNoteById = async (noteId: string) => {
     return null;
   }
 
-  const plainNote = {
-    id: note.id,
-    title: note.title,
-    content: note.content,
-    userEmail: note.userEmail,
-  };
+  
 
-  return plainNote;
+  return note;
 };
 
 export const editNoteContent = async (noteId: string, content: string) => {
