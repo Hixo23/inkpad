@@ -37,11 +37,8 @@ export const getNoteById = async (noteId: string) => {
 };
 
 export const editNoteContent = async (noteId: string, content: string) => {
-  await db
-    .update(notes)
-    .set({ content: content })
-    .where(eq(notes.id, noteId));
-    revalidatePath('/notes/[id]', 'page')
+  await db.update(notes).set({ content: content }).where(eq(notes.id, noteId));
+  revalidatePath("/notes/[id]", "page");
 };
 
 export const getUserNotes = async (userEmail: string) => {
@@ -53,7 +50,7 @@ export const getUserNotes = async (userEmail: string) => {
   return userNotes;
 };
 
-export const editNoteTitle = async(noteId: string, newTitle: string) => {
-   await db.update(notes).set({ title: newTitle }).where(eq(notes.id, noteId))
-   revalidatePath('/notes/[id]', 'page')
-}
+export const editNoteTitle = async (noteId: string, newTitle: string) => {
+  await db.update(notes).set({ title: newTitle }).where(eq(notes.id, noteId));
+  revalidatePath("/notes/[id]");
+};

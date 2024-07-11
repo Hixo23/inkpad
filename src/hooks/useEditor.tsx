@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { editNoteContent } from "@/actions/notes";
 import { Styles, TableContent } from "@blocknote/core";
@@ -56,8 +56,6 @@ export function useEditor(noteId: string, initialContent?: string | null) {
     const currentBlocks = editor.document;
     await editNoteContent(noteId, JSON.stringify(currentBlocks));
   }, 300);
-
-
 
   return { editor, debounced };
 }
