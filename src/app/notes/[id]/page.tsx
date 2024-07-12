@@ -2,7 +2,7 @@
 
 import { getNoteById } from "@/actions/notes";
 import { Editor } from "@/components/Editor/Editor";
-import { NoteNavbar } from "@/components/ui/NoteNavbar/NoteNavbar";
+import { NoteNavbar } from "@/components/ui/NoteNavbar/NoteHeader";
 
 type NotePageProps = {
   params: { id: string };
