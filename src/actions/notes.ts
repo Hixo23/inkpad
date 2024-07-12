@@ -3,6 +3,7 @@
 import { db } from "@/database/db";
 import { notes } from "@/database/schema";
 import { eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export const createNote = async (userEmail: string) => {
@@ -14,7 +15,7 @@ export const createNote = async (userEmail: string) => {
     userEmail: userEmail,
   });
 
-  return redirect(`/notes?id=${noteId}`);
+  return redirect(`/notes/${noteId}`);
 };
 
 export const getNoteById = async (noteId: string) => {
@@ -25,21 +26,14 @@ export const getNoteById = async (noteId: string) => {
     return null;
   }
 
-  const plainNote = {
-    id: note.id,
-    title: note.title,
-    content: note.content,
-    userEmail: note.userEmail,
-  };
+  
 
-  return plainNote;
+  return note;
 };
 
-export const editNote = async (noteId: string, content: string) => {
-  return await db
-    .update(notes)
-    .set({ content: content })
-    .where(eq(notes.id, noteId));
+export const editNoteContent = async (noteId: string, content: string) => {
+  await db.update(notes).set({ content: content }).where(eq(notes.id, noteId));
+  revalidatePath("/notes/[id]", "page");
 };
 
 export const getUserNotes = async (userEmail: string) => {
@@ -49,4 +43,9 @@ export const getUserNotes = async (userEmail: string) => {
     .where(eq(notes.userEmail, userEmail));
 
   return userNotes;
+};
+
+export const editNoteTitle = async (noteId: string, newTitle: string) => {
+  await db.update(notes).set({ title: newTitle }).where(eq(notes.id, noteId));
+  revalidatePath("/notes/[id]");
 };

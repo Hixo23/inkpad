@@ -38,7 +38,7 @@ export function Sidebar({ children }: SidebarProps) {
         <User
           className="text-white justify-start"
           avatarProps={{ src: data!.user!.image! }}
-          name={data!.user!.id}
+          name={data!.user?.name}
         />
         <div>
           <div className="font-semibold text-sm text-gray-500 flex justify-between items-center mb-4">

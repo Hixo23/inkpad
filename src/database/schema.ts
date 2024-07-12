@@ -15,7 +15,7 @@ export const notes = pgTable("note", {
     onDelete: "cascade",
   }),
   content: text("content"),
-  title: text("title"),
+  title: text("title").notNull().default("New note"),
 });
 
 export const users = pgTable("user", {

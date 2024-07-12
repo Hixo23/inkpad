@@ -1,7 +1,4 @@
 import { auth } from "@/auth";
-import { db } from "@/database/db";
-import { notes } from "@/database/schema";
-import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { SingleNote } from "../SingleNote/SingleNote";
 import { getUserNotes } from "@/actions/notes";
