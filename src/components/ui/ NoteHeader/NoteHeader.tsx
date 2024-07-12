@@ -4,12 +4,12 @@ import { editNoteTitle } from "@/actions/notes";
 import { Button, Input } from "@nextui-org/react";
 import { useState } from "react";
 
-type NoteNavbarProps = {
+type NoteHeaderProps = {
   title: string;
   noteId: string;
 };
 
-export function NoteNavbar({ title, noteId }: NoteNavbarProps) {
+export function NoteHeader({ title, noteId }: NoteHeaderProps) {
   const [noteTitle, setNoteTitle] = useState(title);
   const [editing, setEditing] = useState(false);
 
