@@ -1,11 +1,11 @@
 "use client";
 
-import { editNoteTitle } from "@/actions/notes";
+import { editNoteTitle, removeNote } from "@/actions/notes";
 import { Input } from "@nextui-org/react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { IoDocumentTextOutline } from "react-icons/io5";
+import { IoDocumentTextOutline, IoRemoveCircleOutline } from "react-icons/io5";
 import { LiaEdit } from "react-icons/lia";
 
 type SingleNoteProps = {
@@ -15,7 +15,6 @@ type SingleNoteProps = {
 
 export function SingleNote({ id, title }: SingleNoteProps) {
   const path = usePathname();
-  const router = useRouter()
   const [noteTitle, setNoteTitle] = useState(title);
   const [editing, setEditing] = useState(false);
 
@@ -25,6 +24,10 @@ export function SingleNote({ id, title }: SingleNoteProps) {
     editNoteTitle(id, noteTitle);
     setEditing(false);
   };
+
+  const handleRemove = async() => {
+    await removeNote(id);
+  }
   return (
     <div
       className={`flex justify-between text-gray-300 items-center w-full hover:bg-[#303030] rounded-lg py-1 px-2 cursor-pointer group  ${path === `/notes/${id}` && "bg-[#303030]"}`}
@@ -43,16 +46,24 @@ export function SingleNote({ id, title }: SingleNoteProps) {
           <Link
             href={`/notes/${id}`}
             key={id}
-            className={`text-sm font-semibold flex gap-2 r items-center`}
+            className={`text-sm font-semibold flex gap-2 items-center`}
           >
-            <IoDocumentTextOutline size={16} /> {title}
+            <IoDocumentTextOutline /> {title}
           </Link>
-          <button
+         <div className="flex gap-2 items-center">
+         <button
             className="hidden group-hover:block"
             onClick={() => setEditing(true)}
           >
             <LiaEdit />
           </button>
+          <button
+            className="hidden group-hover:block"
+            onClick={() => handleRemove()}
+          >
+           <IoRemoveCircleOutline />
+          </button>
+         </div>
         </>
       )}
     </div>
