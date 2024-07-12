@@ -14,11 +14,9 @@ import {
 } from "@nextui-org/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export function Navbar() {
   const { status, data } = useSession();
-  const router = useRouter();
   return (
     <NextUINavbar className="bg-[#161616] border-b border-b-[#303030] flex fixed">
       <NavbarBrand>
@@ -44,7 +42,7 @@ export function Navbar() {
             </DropdownTrigger>
 
             <DropdownMenu>
-              <DropdownItem onAction={() => router.push('/notes/')}>Notes</DropdownItem>
+              <DropdownItem href="/notes">Notes</DropdownItem>
               <DropdownItem onAction={() => signOut()}>Logout</DropdownItem>
             </DropdownMenu>
           </Dropdown>
