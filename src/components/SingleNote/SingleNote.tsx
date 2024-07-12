@@ -29,6 +29,7 @@ export function SingleNote({ id, title }: SingleNoteProps) {
     <div
       className={`flex justify-between text-gray-300 items-center w-full hover:bg-[#303030] rounded-lg py-1 px-2 cursor-pointer group  ${path === `/notes/${id}` && "bg-[#303030]"}`}
     >
+
       {editing ? (
         <>
           <Input
@@ -56,5 +57,8 @@ export function SingleNote({ id, title }: SingleNoteProps) {
         </>
       )}
     </div>
+
+      <IoDocumentTextOutline size={16} /> {title}
+    </Link>
   );
 }
