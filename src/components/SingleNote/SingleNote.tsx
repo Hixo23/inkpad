@@ -46,7 +46,7 @@ export function SingleNote({ id, title }: SingleNoteProps) {
           <Link
             href={`/notes/${id}`}
             key={id}
-            className={`text-sm font-semibold flex gap-2 items-center`}
+            className={`text-sm font-semibold flex gap-2 w-full items-center`}
           >
             <IoDocumentTextOutline /> {title}
           </Link>
