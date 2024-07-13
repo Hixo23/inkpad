@@ -49,3 +49,8 @@ export const editNoteTitle = async (noteId: string, newTitle: string) => {
   await db.update(notes).set({ title: newTitle }).where(eq(notes.id, noteId));
   revalidatePath("/notes/[id]");
 };
+
+export const removeNote = async (noteId: string) => {
+  await db.delete(notes).where(eq(notes.id, noteId));
+  redirect('/notes/')
+}

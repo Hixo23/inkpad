@@ -7,8 +7,12 @@ import {
   NavbarItem,
   Button,
   User,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
 } from "@nextui-org/react";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
 export function Navbar() {
@@ -28,11 +32,20 @@ export function Navbar() {
       </NavbarContent>
       <NavbarContent justify="end">
         {status === "authenticated" && data.user ? (
-          <User
+          <Dropdown className="dark text-white">
+            <DropdownTrigger>
+            <User
             className="text-white"
             avatarProps={{ src: data.user.image! }}
             name={data.user.name}
           />
+            </DropdownTrigger>
+
+            <DropdownMenu>
+              <DropdownItem href="/notes">Notes</DropdownItem>
+              <DropdownItem onAction={() => signOut()}>Logout</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         ) : (
           <NavbarItem>
             <Button
