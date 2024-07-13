@@ -25,9 +25,9 @@ export function SingleNote({ id, title }: SingleNoteProps) {
     setEditing(false);
   };
 
-  const handleRemove = async() => {
+  const handleRemove = async () => {
     await removeNote(id);
-  }
+  };
   return (
     <div
       className={`flex justify-between text-gray-300 items-center w-full hover:bg-[#303030] rounded-lg py-1 px-2 cursor-pointer group  ${path === `/notes/${id}` && "bg-[#303030]"}`}
@@ -50,20 +50,20 @@ export function SingleNote({ id, title }: SingleNoteProps) {
           >
             <IoDocumentTextOutline /> {title}
           </Link>
-         <div className="flex gap-2 items-center">
-         <button
-            className="hidden group-hover:block"
-            onClick={() => setEditing(true)}
-          >
-            <LiaEdit />
-          </button>
-          <button
-            className="hidden group-hover:block"
-            onClick={() => handleRemove()}
-          >
-           <IoRemoveCircleOutline />
-          </button>
-         </div>
+          <div className="flex gap-2 items-center">
+            <button
+              className="hidden group-hover:block"
+              onClick={() => setEditing(true)}
+            >
+              <LiaEdit />
+            </button>
+            <button
+              className="hidden group-hover:block"
+              onClick={() => handleRemove()}
+            >
+              <IoRemoveCircleOutline />
+            </button>
+          </div>
         </>
       )}
     </div>

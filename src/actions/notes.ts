@@ -26,8 +26,6 @@ export const getNoteById = async (noteId: string) => {
     return null;
   }
 
-  
-
   return note;
 };
 
@@ -52,5 +50,5 @@ export const editNoteTitle = async (noteId: string, newTitle: string) => {
 
 export const removeNote = async (noteId: string) => {
   await db.delete(notes).where(eq(notes.id, noteId));
-  redirect('/notes/')
-}
+  redirect("/notes/");
+};

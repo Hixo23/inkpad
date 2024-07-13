@@ -34,11 +34,11 @@ export function Navbar() {
         {status === "authenticated" && data.user ? (
           <Dropdown className="dark text-white">
             <DropdownTrigger>
-            <User
-            className="text-white"
-            avatarProps={{ src: data.user.image! }}
-            name={data.user.name}
-          />
+              <User
+                className="text-white"
+                avatarProps={{ src: data.user.image! }}
+                name={data.user.name}
+              />
             </DropdownTrigger>
 
             <DropdownMenu>
