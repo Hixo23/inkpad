@@ -19,7 +19,7 @@ export function NoteHeader({ title, noteId }: NoteHeaderProps) {
     setEditing(false);
   };
   return (
-    <div className="w-full h-16 flex items-center px-4 ml-60 z-10 fixed top-0 border-b bg-[#161616] border-b-[#303030]">
+    <div className="w-full h-16 flex items-center lg:px-4 px-16 lg:ml-60 z-10 fixed top-0 border-b bg-[#161616] border-b-[#303030]">
       {editing ? (
         <div className="flex gap-2 items-center">
           <Input
