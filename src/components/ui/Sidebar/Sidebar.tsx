@@ -30,7 +30,7 @@ export function Sidebar({ children }: SidebarProps) {
       </div>
 
       <div
-        className={`w-60 h-screen border-r-2 overflow-hidden fixed border-r-[#303030] bg-[#161616] flex flex-col gap-12 p-4 z-20 md:translate-x-0  ${open ? "translate-x-0" : "-translate-x-96"}`}
+        className={`w-60 h-screen border-r-2  fixed border-r-[#303030] bg-[#161616] flex flex-col gap-12 p-4 z-20 md:translate-x-0  ${open ? "translate-x-0" : "-translate-x-96"}`}
       >
         <User
           className="text-white justify-start"
