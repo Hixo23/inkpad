@@ -14,7 +14,7 @@ export default async function NotePage({ params }: NotePageProps) {
   if (!note) return null;
 
   return (
-    <div className="w-full lg:ml-60 relative min-h-screen bg-[#1f1f1f] text-white flex flex-col items-center py-4">
+    <div className="w-full lg:ml-60 relative min-h-screen bg-[#1f1f1f] text-white flex flex-col lg:items-center py-4">
       <NoteHeader noteId={note.id} title={note.title} />
       <Editor note={note} />
     </div>
