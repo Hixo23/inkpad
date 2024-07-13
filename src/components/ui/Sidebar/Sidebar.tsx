@@ -5,9 +5,6 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { IoAdd, IoMenu } from "react-icons/io5";
 import { Loading } from "../Loading/Loading";
-import { db } from "@/database/db";
-import { notes } from "@/database/schema";
-import { redirect } from "next/navigation";
 import { createNote } from "@/actions/notes";
 
 type SidebarProps = {
