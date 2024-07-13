@@ -22,10 +22,10 @@ export function Sidebar({ children }: SidebarProps) {
   return (
     <>
       <div
-        className={`flex ${open ? "justify-end" : "justify-start"}  w-60 md:hidden absolute z-10`}
+        className={`flex ${open ? "justify-end w-60" : "justify-start bg-[#303030] rounded-full"} p-4  md:hidden absolute z-30`}
       >
         <button
-          className="text-white text-2xl  p-4 top-0 "
+          className="text-white text-2xl top-0 "
           onClick={() => setOpen((prev) => !prev)}
         >
           <IoMenu />
@@ -33,7 +33,7 @@ export function Sidebar({ children }: SidebarProps) {
       </div>
 
       <div
-        className={`w-60 h-screen border-r-2 overflow-hidden fixed border-r-[#303030] z-0 flex flex-col gap-12 p-4 md:translate-x-0  ${open ? "translate-x-0" : "-translate-x-96"}`}
+        className={`w-60 h-screen border-r-2 overflow-hidden fixed border-r-[#303030] bg-[#161616] flex flex-col gap-12 p-4 z-20 md:translate-x-0  ${open ? "translate-x-0" : "-translate-x-96"}`}
       >
         <User
           className="text-white justify-start"
