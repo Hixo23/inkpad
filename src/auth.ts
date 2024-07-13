@@ -1,6 +1,10 @@
 import NextAuth from "next-auth";
-import discord from "next-auth/providers/discord";
+import { DrizzleAdapter } from "@auth/drizzle-adapter"
+import { db } from "./database/db";
+import authConfig from "../auth.config";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [discord],
+  adapter: DrizzleAdapter(db),
+  session: { strategy: "jwt" },
+  ...authConfig,
 });

@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS "account" (
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "note" (
-	"id" text PRIMARY KEY DEFAULT '4a522eb4-5be0-4d08-8378-86b854f1ac38' NOT NULL,
+	"id" text PRIMARY KEY DEFAULT '700fa916-e76a-4726-8cec-50aa52f9b76d' NOT NULL,
 	"userEmail" text,
 	"content" text,
 	"title" text DEFAULT 'New note' NOT NULL
@@ -27,10 +27,11 @@ CREATE TABLE IF NOT EXISTS "session" (
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "user" (
-	"id" text PRIMARY KEY DEFAULT 'c51e0028-fe29-4716-b5e8-1c8c488597d8' NOT NULL,
+	"id" text PRIMARY KEY NOT NULL,
+	"name" text,
 	"email" text NOT NULL,
-	"password" text,
-	CONSTRAINT "user_email_unique" UNIQUE("email")
+	"emailVerified" timestamp,
+	"image" text
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "verificationToken" (

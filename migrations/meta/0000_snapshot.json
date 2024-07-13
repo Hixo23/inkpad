@@ -1,5 +1,5 @@
 {
-  "id": "7e121652-bf36-403d-9850-349259ae660f",
+  "id": "64bcca0a-ee18-4aa9-89d7-ebef3ab91cfd",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -111,7 +111,7 @@
           "type": "text",
           "primaryKey": true,
           "notNull": true,
-          "default": "'4a522eb4-5be0-4d08-8378-86b854f1ac38'"
+          "default": "'700fa916-e76a-4726-8cec-50aa52f9b76d'"
         },
         "userEmail": {
           "name": "userEmail",
@@ -202,8 +202,13 @@
           "name": "id",
           "type": "text",
           "primaryKey": true,
-          "notNull": true,
-          "default": "'c51e0028-fe29-4716-b5e8-1c8c488597d8'"
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "email": {
           "name": "email",
@@ -211,8 +216,14 @@
           "primaryKey": false,
           "notNull": true
         },
-        "password": {
-          "name": "password",
+        "emailVerified": {
+          "name": "emailVerified",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image": {
+          "name": "image",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -221,15 +232,7 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "user_email_unique": {
-          "name": "user_email_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
     "public.verificationToken": {
       "name": "verificationToken",
