@@ -1,4 +1,4 @@
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 import { SingleNote } from "../SingleNote/SingleNote";
 import { getUserNotes } from "@/actions/notes";
 

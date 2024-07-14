@@ -1,4 +1,4 @@
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 import { NotesList } from "@/components/NotesList/NotesList";
 import { Sidebar } from "@/components/ui/Sidebar/Sidebar";
 import { redirect } from "next/navigation";
