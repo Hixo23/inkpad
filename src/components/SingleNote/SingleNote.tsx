@@ -1,7 +1,7 @@
 'use client'
 
 import { editTitle, remove } from '@/actions/notes'
-import { Input } from '@nextui-org/react'
+import { Input, Spinner } from '@nextui-org/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
@@ -11,9 +11,10 @@ import { LiaEdit } from 'react-icons/lia'
 type SingleNoteProps = {
     id: string
     title: string
+    creating?: boolean
 }
 
-export function SingleNote({ id, title }: SingleNoteProps) {
+export function SingleNote({ id, title, creating }: SingleNoteProps) {
     const path = usePathname()
     const [noteTitle, setNoteTitle] = useState(title)
     const [editing, setEditing] = useState(false)
@@ -48,7 +49,7 @@ export function SingleNote({ id, title }: SingleNoteProps) {
                         key={id}
                         className={`text-sm font-semibold flex gap-2 w-full items-center`}
                     >
-                        <IoDocumentTextOutline /> {title}
+                        <IoDocumentTextOutline /> {title} {!!creating && <Spinner size='sm' />}
                     </Link>
                     <div className="flex gap-2 items-center">
                         <button

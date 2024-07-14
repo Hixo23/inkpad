@@ -1,5 +1,5 @@
 'use server'
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { redirect } from 'next/navigation'
 import {
     createNote,
@@ -12,7 +12,7 @@ import {
 
 export const create = async (userEmail: string) => {
     const noteId = await createNote(userEmail)
-
+    revalidateTag('notes')
     redirect(`/notes/${noteId}`)
 }
 

@@ -2,18 +2,33 @@
 
 import { User } from '@nextui-org/react'
 import { useSession } from 'next-auth/react'
-import { useState } from 'react'
+import { useOptimistic, useState } from 'react'
 import { IoAdd, IoMenu } from 'react-icons/io5'
 import { Loading } from '../Loading/Loading'
 import { create } from '@/actions/notes'
+import { Note } from '@/repositories/notes/noteRepository'
+import { v4 } from 'uuid'
+import { NotesList } from '@/components/NotesList/NotesList'
 
 type SidebarProps = {
-    children: React.ReactNode
+    notes: Note[]
 }
 
-export function Sidebar({ children }: SidebarProps) {
+export function Sidebar({ notes }: SidebarProps) {
     const [open, setOpen] = useState(false)
     const { data, status } = useSession()
+
+    const [optimisticNotes, addOptimisticNote] = useOptimistic(notes, (state, userEmail: string) => {
+        return [
+            ...state, {
+                title: "New note",
+                content: "",
+                id: v4(),
+                userEmail,
+                creating: true
+            }
+        ]
+    })
 
     if (!data?.user && status === 'loading') return <Loading />
     return (
@@ -43,13 +58,14 @@ export function Sidebar({ children }: SidebarProps) {
                         <button
                             onClick={async () => {
                                 if (!data?.user?.email) return
+                                addOptimisticNote(data.user.email)
                                 await create(data.user.email)
                             }}
                         >
                             <IoAdd size={24} />
                         </button>
                     </div>
-                    {children}
+                    <NotesList notes={optimisticNotes} />
                 </div>
             </div>
         </>

@@ -1,15 +1,17 @@
-import { auth } from '@/lib/auth'
+"use client";
+
+import { Note } from '@/repositories/notes/noteRepository';
 import { SingleNote } from '../SingleNote/SingleNote'
-import { getUserNotes } from '@/actions/notes'
 
-export async function NotesList() {
-    const session = await auth()
+type NotesListProps = {
+    notes: Note[]
+}
 
-    const userNotes = await getUserNotes(session!.user!.email!)
-
+export function NotesList({ notes }:  NotesListProps) {
+    
     return (
         <nav className="flex flex-col gap-4">
-            {userNotes.map((note) => (
+            {notes.map((note) => (
                 <SingleNote {...note} key={note.id} />
             ))}
         </nav>
