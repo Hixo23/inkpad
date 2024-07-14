@@ -36,5 +36,6 @@ export const editTitle = async (noteId: string, newTitle: string) => {
 
 export const remove = async (noteId: string) => {
     removeNote(noteId)
+    revalidateTag('notes')
     redirect('/notes/')
 }
