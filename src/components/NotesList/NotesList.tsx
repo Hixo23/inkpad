@@ -1,19 +1,19 @@
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
-import { SingleNote } from "../SingleNote/SingleNote";
-import { getUserNotes } from "@/actions/notes";
+"use client";
 
-export async function NotesList() {
-  const session = await auth();
+import { Note } from '@/repositories/notes/noteRepository';
+import { SingleNote } from '../SingleNote/SingleNote'
 
+type NotesListProps = {
+    notes: Note[]
+}
 
-  const userNotes = await getUserNotes(session!.user!.email!);
-
-  return (
-    <nav className="flex flex-col gap-4 overflow-y-scroll">
-      {userNotes.map((note) => (
-        <SingleNote {...note} key={note.id} />
-      ))}
-    </nav>
-  );
+export function NotesList({ notes }:  NotesListProps) {
+    
+    return (
+        <nav className="flex flex-col gap-4">
+            {notes.map((note) => (
+                <SingleNote {...note} key={note.id} />
+            ))}
+        </nav>
+    )
 }

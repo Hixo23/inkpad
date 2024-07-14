@@ -1,6 +1,6 @@
-import type { NextAuthConfig } from "next-auth"
-import discord from "next-auth/providers/discord"
- 
+import type { NextAuthConfig } from 'next-auth'
+import discord from 'next-auth/providers/discord'
+
 export default {
-  providers: [discord],
+    providers: [discord],
 } satisfies NextAuthConfig

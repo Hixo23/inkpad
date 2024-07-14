@@ -1,56 +1,41 @@
-"use server";
+'use server'
+import { revalidatePath, revalidateTag } from 'next/cache'
+import { redirect } from 'next/navigation'
+import {
+    createNote,
+    editNoteContent,
+    editNoteTitle,
+    getNoteById,
+    getUserNotesFromDatabase,
+    removeNote,
+} from '@/services/notes/noteService'
 
-import { db } from "@/database/db";
-import { notes } from "@/database/schema";
-import { eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+export const create = async (userEmail: string) => {
+    const noteId = await createNote(userEmail)
+    revalidateTag('notes')
+    redirect(`/notes/${noteId}`)
+}
 
-export const createNote = async (userEmail: string) => {
-  const noteId = crypto.randomUUID();
+export const getNote = async (noteId: string) => {
+    return await getNoteById(noteId)
+}
 
-  await db.insert(notes).values({
-    id: noteId,
-    title: "New note",
-    userEmail: userEmail,
-  });
-
-  return redirect(`/notes/${noteId}`);
-};
-
-export const getNoteById = async (noteId: string) => {
-  const notesDb = await db.select().from(notes).where(eq(notes.id, noteId));
-  const note = notesDb[0];
-
-  if (!note) {
-    return null;
-  }
-
-  
-
-  return note;
-};
-
-export const editNoteContent = async (noteId: string, content: string) => {
-  await db.update(notes).set({ content: content }).where(eq(notes.id, noteId));
-  revalidatePath("/notes/[id]", "page");
-};
+export const editContent = async (noteId: string, content: string) => {
+    editNoteContent(noteId, content)
+    revalidatePath('/notes/[id]', 'page')
+}
 
 export const getUserNotes = async (userEmail: string) => {
-  const userNotes = await db
-    .select()
-    .from(notes)
-    .where(eq(notes.userEmail, userEmail));
+    return await getUserNotesFromDatabase(userEmail)
+}
 
-  return userNotes;
-};
+export const editTitle = async (noteId: string, newTitle: string) => {
+    editNoteTitle(noteId, newTitle)
+    revalidatePath('/notes/[id]')
+}
 
-export const editNoteTitle = async (noteId: string, newTitle: string) => {
-  await db.update(notes).set({ title: newTitle }).where(eq(notes.id, noteId));
-  revalidatePath("/notes/[id]");
-};
-
-export const removeNote = async (noteId: string) => {
-  await db.delete(notes).where(eq(notes.id, noteId));
-  redirect('/notes/')
+export const remove = async (noteId: string) => {
+    removeNote(noteId)
+    revalidateTag('notes')
+    redirect('/notes/')
 }
