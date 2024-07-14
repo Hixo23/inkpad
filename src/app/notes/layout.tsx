@@ -1,23 +1,23 @@
-import { auth } from "@/lib/auth";
-import { NotesList } from "@/components/NotesList/NotesList";
-import { Sidebar } from "@/components/ui/Sidebar/Sidebar";
-import { redirect } from "next/navigation";
-import { ReactNode } from "react";
+import { auth } from '@/lib/auth'
+import { NotesList } from '@/components/NotesList/NotesList'
+import { Sidebar } from '@/components/ui/Sidebar/Sidebar'
+import { redirect } from 'next/navigation'
+import { ReactNode } from 'react'
 
 type NotesLayoutProps = {
-  children: ReactNode;
-};
+    children: ReactNode
+}
 
 export default async function NotesLayout({ children }: NotesLayoutProps) {
-  const session = await auth();
+    const session = await auth()
 
-  if (!session?.user) return redirect("/");
-  return (
-    <main className="flex overflow-hidden">
-      <Sidebar>
-        <NotesList />
-      </Sidebar>
-      {children}
-    </main>
-  );
+    if (!session?.user) return redirect('/')
+    return (
+        <main className="flex overflow-hidden">
+            <Sidebar>
+                <NotesList />
+            </Sidebar>
+            {children}
+        </main>
+    )
 }

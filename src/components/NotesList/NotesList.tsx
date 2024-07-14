@@ -1,17 +1,17 @@
-import { auth } from "@/lib/auth";
-import { SingleNote } from "../SingleNote/SingleNote";
-import { getUserNotes } from "@/actions/notes";
+import { auth } from '@/lib/auth'
+import { SingleNote } from '../SingleNote/SingleNote'
+import { getUserNotes } from '@/actions/notes'
 
 export async function NotesList() {
-  const session = await auth();
+    const session = await auth()
 
-  const userNotes = await getUserNotes(session!.user!.email!);
+    const userNotes = await getUserNotes(session!.user!.email!)
 
-  return (
-    <nav className="flex flex-col gap-4">
-      {userNotes.map((note) => (
-        <SingleNote {...note} key={note.id} />
-      ))}
-    </nav>
-  );
+    return (
+        <nav className="flex flex-col gap-4">
+            {userNotes.map((note) => (
+                <SingleNote {...note} key={note.id} />
+            ))}
+        </nav>
+    )
 }

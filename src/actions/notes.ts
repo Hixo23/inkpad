@@ -1,7 +1,14 @@
 'use server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { createNote, editNoteContent, editNoteTitle, getNoteById, getUserNotesFromDatabase, removeNote } from '@/services/notes/noteService'
+import {
+    createNote,
+    editNoteContent,
+    editNoteTitle,
+    getNoteById,
+    getUserNotesFromDatabase,
+    removeNote,
+} from '@/services/notes/noteService'
 
 export const create = async (userEmail: string) => {
     const noteId = await createNote(userEmail)
