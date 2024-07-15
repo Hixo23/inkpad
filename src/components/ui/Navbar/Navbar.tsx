@@ -11,9 +11,9 @@ import {
     DropdownTrigger,
     DropdownMenu,
     DropdownItem,
+    Link,
 } from '@nextui-org/react'
 import { signIn, signOut, useSession } from 'next-auth/react'
-import Link from 'next/link'
 
 export function Navbar() {
     const { status, data } = useSession()
@@ -51,11 +51,12 @@ export function Navbar() {
                 ) : (
                     <NavbarItem>
                         <Button
-                            onClick={() => signIn('discord')}
+                            as={Link}
                             color="secondary"
+                            href="/sign-in"
                             variant="flat"
                         >
-                            Login using Discord
+                            Login
                         </Button>
                     </NavbarItem>
                 )}
