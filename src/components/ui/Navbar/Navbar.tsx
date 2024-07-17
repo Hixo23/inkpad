@@ -8,7 +8,7 @@ import {
     DropdownMenu,
     DropdownItem,
 } from '@nextui-org/react'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 
 export function Navbar() {
