@@ -1,66 +1,64 @@
 'use client'
 
 import {
-    Navbar as NextUINavbar,
-    NavbarBrand,
-    NavbarContent,
-    NavbarItem,
     Button,
     User,
     Dropdown,
     DropdownTrigger,
     DropdownMenu,
     DropdownItem,
-    Link,
 } from '@nextui-org/react'
 import { signIn, signOut, useSession } from 'next-auth/react'
+import Link from 'next/link'
 
 export function Navbar() {
     const { status, data } = useSession()
     return (
-        <NextUINavbar className="bg-[#161616] border-b border-b-[#303030] flex fixed">
-            <NavbarBrand>
-                <p className="text-white font-bold text-2xl">Inkpad</p>
-            </NavbarBrand>
-            <NavbarContent justify="center" className="text-white">
-                <NavbarItem>
-                    <Link href="#features">Benefits</Link>
-                </NavbarItem>
-                <NavbarItem>
-                    <Link href="#pricing">Pricing</Link>
-                </NavbarItem>
-            </NavbarContent>
-            <NavbarContent justify="end">
-                {status === 'authenticated' && data.user ? (
-                    <Dropdown className="dark text-white">
-                        <DropdownTrigger>
+        <header className="top-0 flex sticky left-0  backdrop-blur-lg w-screen justify-between px-8 py-4 z-40 text-white items-center">
+            <h1 className="text-3xl font-bold">Inkpad</h1>
+            <nav className="flex gap-4">
+                <Link
+                    className="text-gray-400 hover:text-white transition-colors duration-150"
+                    href="#features"
+                >
+                    Features
+                </Link>
+                <Link
+                    className="text-gray-400 hover:text-white transition-colors duration-150"
+                    href="#pricing"
+                >
+                    Pricing
+                </Link>
+            </nav>
+            {status === 'authenticated' && data.user?.image ? (
+                <Dropdown className="dark text-white">
+                    <DropdownTrigger>
+                        <button>
                             <User
-                                className="text-white"
-                                avatarProps={{ src: data.user.image! }}
-                                name={data.user.name}
+                                name={data.user?.name}
+                                avatarProps={{ src: data.user.image }}
                             />
-                        </DropdownTrigger>
-
-                        <DropdownMenu>
-                            <DropdownItem href="/notes">Notes</DropdownItem>
-                            <DropdownItem onAction={() => signOut()}>
-                                Logout
-                            </DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                ) : (
-                    <NavbarItem>
-                        <Button
-                            as={Link}
-                            color="secondary"
-                            href="/sign-in"
-                            variant="flat"
-                        >
-                            Login
-                        </Button>
-                    </NavbarItem>
-                )}
-            </NavbarContent>
-        </NextUINavbar>
+                        </button>
+                    </DropdownTrigger>
+                    <DropdownMenu>
+                        <DropdownItem>
+                            <Link href={'/notes/'}>Notes</Link>
+                        </DropdownItem>
+                        <DropdownItem>
+                            <button onClick={() => signOut()}>Sign out</button>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+            ) : (
+                <Button
+                    as={Link}
+                    variant="flat"
+                    color="primary"
+                    href="/sign-in"
+                >
+                    Login
+                </Button>
+            )}
+        </header>
     )
 }
