@@ -23,12 +23,6 @@ export function Navbar() {
                 >
                     Features
                 </Link>
-                <Link
-                    className="text-gray-400 hover:text-white transition-colors duration-150"
-                    href="#pricing"
-                >
-                    Pricing
-                </Link>
             </nav>
             {status === 'authenticated' && data.user?.image ? (
                 <Dropdown className="dark text-white">
@@ -42,10 +36,17 @@ export function Navbar() {
                     </DropdownTrigger>
                     <DropdownMenu>
                         <DropdownItem>
-                            <Link href={'/notes/'}>Notes</Link>
+                            <Link className="w-full h-full" href={'/notes'}>
+                                Notes
+                            </Link>
                         </DropdownItem>
                         <DropdownItem>
-                            <button onClick={() => signOut()}>Sign out</button>
+                            <button
+                                className="w-full text-left"
+                                onClick={() => signOut()}
+                            >
+                                Sign out
+                            </button>
                         </DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
