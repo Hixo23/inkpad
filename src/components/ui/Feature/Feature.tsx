@@ -9,7 +9,7 @@ export function Feature({ title, description }: FeatureProps) {
     return (
         <Card className="dark p-4">
             <CardHeader className="flex justify-center">
-                <p className="text-center">{title}</p>
+                <p className="text-center font-semibold text-2xl">{title}</p>
             </CardHeader>
             <CardBody>
                 <p>{description}</p>

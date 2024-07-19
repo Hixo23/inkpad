@@ -1,4 +1,4 @@
-import { Feature } from '../ui/Feature/ Feature'
+import { Feature } from '../ui/Feature/Feature'
 
 const FEATURES = [
     {
@@ -30,7 +30,10 @@ const FEATURES = [
 
 export function Features() {
     return (
-        <section className="min-h-screen w-screen flex gap-24 px-24 flex-col text-white items-center justify-center">
+        <section
+            id="features"
+            className="min-h-screen w-screen flex gap-24 px-24 flex-col text-white items-center justify-center"
+        >
             <h2 className="tracking-widest text-6xl font-bold uppercase">
                 Features
             </h2>
