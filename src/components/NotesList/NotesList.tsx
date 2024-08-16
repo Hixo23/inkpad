@@ -10,9 +10,8 @@ type NotesListProps = {
 export function NotesList({ notes }: NotesListProps) {
     return (
         <nav className="flex flex-col gap-4">
-            {notes.map((note) => (
-                <SingleNote {...note} key={note.id} />
-            ))}
+            {notes.length >= 1 &&
+                notes.map((note) => <SingleNote {...note} key={note.id} />)}
         </nav>
     )
 }

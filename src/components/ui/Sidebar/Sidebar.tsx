@@ -9,6 +9,7 @@ import { create } from '@/actions/notes'
 import { Note } from '@/repositories/notes/noteRepository'
 import { v4 } from 'uuid'
 import { NotesList } from '@/components/NotesList/NotesList'
+import { NotesSearchBar } from '@/components/NotesSearchBar/NotesSearchBar'
 
 type SidebarProps = {
     notes: Note[]
@@ -17,9 +18,10 @@ type SidebarProps = {
 export function Sidebar({ notes }: SidebarProps) {
     const [open, setOpen] = useState(false)
     const { data, status } = useSession()
+    const [filteredNotes, setFilteredNotes] = useState<Note[] | []>(notes)
 
     const [optimisticNotes, addOptimisticNote] = useOptimistic(
-        notes,
+        filteredNotes,
         (state, userEmail: string) => {
             return [
                 ...state,
@@ -69,6 +71,7 @@ export function Sidebar({ notes }: SidebarProps) {
                             <IoAdd size={24} />
                         </button>
                     </div>
+                    <NotesSearchBar setNotes={setFilteredNotes} notes={notes} />
                     <NotesList notes={optimisticNotes} />
                 </div>
             </div>
