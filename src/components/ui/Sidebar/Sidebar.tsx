@@ -18,17 +18,21 @@ export function Sidebar({ notes }: SidebarProps) {
     const [open, setOpen] = useState(false)
     const { data, status } = useSession()
 
-    const [optimisticNotes, addOptimisticNote] = useOptimistic(notes, (state, userEmail: string) => {
-        return [
-            ...state, {
-                title: "New note",
-                content: "",
-                id: v4(),
-                userEmail,
-                creating: true
-            }
-        ]
-    })
+    const [optimisticNotes, addOptimisticNote] = useOptimistic(
+        notes,
+        (state, userEmail: string) => {
+            return [
+                ...state,
+                {
+                    title: 'New note',
+                    content: '',
+                    id: v4(),
+                    userEmail,
+                    creating: true,
+                },
+            ]
+        }
+    )
 
     if (!data?.user && status === 'loading') return <Loading />
     return (

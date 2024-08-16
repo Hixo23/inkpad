@@ -9,18 +9,19 @@ type NotesLayoutProps = {
     children: ReactNode
 }
 
-const getCachedNotes = unstable_cache(async(session) => getUserNotes(session.user.email))
+const getCachedNotes = unstable_cache(async (session) =>
+    getUserNotes(session.user.email)
+)
 
 export default async function NotesLayout({ children }: NotesLayoutProps) {
     const session = await auth()
 
     if (!session?.user) return redirect('/')
 
-     const cachedUserNotes = await getCachedNotes(session)
+    const cachedUserNotes = await getCachedNotes(session)
     return (
         <main className="flex overflow-hidden">
-            <Sidebar notes={cachedUserNotes}/>
-                
+            <Sidebar notes={cachedUserNotes} />
             {children}
         </main>
     )

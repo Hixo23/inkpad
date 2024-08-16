@@ -49,7 +49,8 @@ export function SingleNote({ id, title, creating }: SingleNoteProps) {
                         key={id}
                         className={`text-sm font-semibold flex gap-2 w-full items-center`}
                     >
-                        <IoDocumentTextOutline /> {title} {!!creating && <Spinner size='sm' />}
+                        <IoDocumentTextOutline /> {title}{' '}
+                        {!!creating && <Spinner size="sm" />}
                     </Link>
                     <div className="flex gap-2 items-center">
                         <button
