@@ -18,7 +18,12 @@ export default async function NotesLayout({ children }: NotesLayoutProps) {
 
     if (!session?.user) return redirect('/')
 
-    const cachedUserNotes = await getCachedNotes(session)
+    const cachedUserNotes = await (
+        await getCachedNotes(session)
+    ).sort(
+        (a, b) =>
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    )
     return (
         <main className="flex overflow-hidden">
             <Sidebar notes={cachedUserNotes} />
