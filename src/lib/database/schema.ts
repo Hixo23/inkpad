@@ -69,5 +69,5 @@ export const notes = pgTable('note', {
     }),
     content: text('content'),
     title: text('title').notNull().default('New note'),
-    createdAt: timestamp('createdAt').defaultNow(),
+    createdAt: timestamp('createdAt').defaultNow().notNull(),
 })

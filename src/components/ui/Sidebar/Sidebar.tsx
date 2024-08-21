@@ -31,7 +31,7 @@ export function Sidebar({ notes }: SidebarProps) {
                     id: v4(),
                     userEmail,
                     creating: true,
-                    createdAt: new Date().getTime().toString(),
+                    createdAt: new Date(),
                 },
             ]
         }
