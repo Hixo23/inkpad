@@ -8,6 +8,7 @@ export interface Note {
     title: string
     content: string | null
     creating?: boolean | undefined
+    createdAt: string
 }
 
 export const create = async (userEmail: string, noteId: string) => {

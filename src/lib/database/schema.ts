@@ -5,6 +5,7 @@ import {
     primaryKey,
     integer,
     uuid,
+    date,
 } from 'drizzle-orm/pg-core'
 import type { AdapterAccount } from 'next-auth/adapters'
 import { v4 } from 'uuid'
@@ -68,4 +69,5 @@ export const notes = pgTable('note', {
     }),
     content: text('content'),
     title: text('title').notNull().default('New note'),
+    createdAt: timestamp('createdAt').defaultNow(),
 })
