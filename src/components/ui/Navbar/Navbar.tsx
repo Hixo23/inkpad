@@ -36,7 +36,7 @@ export function Navbar() {
                     </DropdownTrigger>
                     <DropdownMenu>
                         <DropdownItem>
-                            <Link className="w-full h-full" href={'/notes'}>
+                            <Link prefetch={true} className="w-full h-full" href={'/notes'}>
                                 Notes
                             </Link>
                         </DropdownItem>

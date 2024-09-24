@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { IoDocumentTextOutline, IoRemoveCircleOutline } from 'react-icons/io5'
 import { LiaEdit } from 'react-icons/lia'
+import { SuperLink } from '@/components/ui/SuperLink/SuperLink'
 
 type SingleNoteProps = {
     id: string
@@ -44,14 +45,14 @@ export function SingleNote({ id, title, creating }: SingleNoteProps) {
                 </>
             ) : (
                 <>
-                    <Link
+                    <SuperLink
                         href={`/notes/${id}`}
                         key={id}
                         className={`text-sm font-semibold flex gap-2 w-full items-center`}
                     >
                         <IoDocumentTextOutline /> {title}{' '}
                         {!!creating && <Spinner size="sm" />}
-                    </Link>
+                    </SuperLink>
                     <div className="flex gap-2 items-center">
                         <button
                             className="hidden group-hover:block"
